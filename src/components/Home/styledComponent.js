@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const HomeBg = styled.div`
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  height: 90vh;
   width: 100%;
   background-color: ${props => (props.isDarkTheme ? '#181818' : '#f9f9f9')};
   padding-bottom: 25px;
@@ -13,6 +13,7 @@ export const HomeContentBg = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow-y: auto;
 `
 
 export const PremiumBanner = styled.div`
@@ -129,7 +130,6 @@ export const AllApiStatusBg = styled.div`
   flex-direction: column;
   margin-top: 20px;
   align-items: center;
-  }
 `
 
 export const VideoListItemCont = styled.ul`

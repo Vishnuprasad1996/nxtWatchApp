@@ -33,6 +33,7 @@ export const SavedVideoImg = styled.img`
   }
   @media screen and (min-width: 768px) {
     height: 250px;
+    width: 500px;
   }
 `
 
@@ -55,6 +56,7 @@ export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 10px;
+  width: 100%;
 `
 
 export const Title = styled.p`

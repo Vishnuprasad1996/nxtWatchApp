@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 export const SideNavBarbg = styled.div`
   display: none;
+  height: 90vh;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;
     width: 400px;
-    height: 100vh;
     background-color: ${props => (props.isDarkTheme ? '#231f20' : '#ffffff')};
     align-items: center;
     justify-content: space-between;

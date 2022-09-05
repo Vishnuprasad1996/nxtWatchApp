@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const VideoItemDetailsBg = styled.div`
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  height: 90vh;
   width: 100%;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
   padding-bottom: 25px;
@@ -14,6 +14,7 @@ export const VideoitemDetailsContent = styled.div`
   flex-direction: column;
   width: 100%;
   align-items: center;
+  overflow-y: auto;
 `
 
 export const VideoItemDetailsCont = styled.div`

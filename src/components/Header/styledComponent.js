@@ -4,6 +4,7 @@ export const Navbar = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   min-height: 10vh;
   background-color: ${props => (props.isDarkTheme ? '#231f20' : '#ffffff')};
 `
@@ -132,6 +133,42 @@ export const LogoutButton = styled.button`
   font-family: 'Roboto';
   font-weight: 500;
   color: ${props => (props.isDarkTheme ? '#ebebeb' : '#3b82f6')};
+  cursor: pointer;
+  outline: none;
+`
+
+export const MobileSideNavCont = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`
+export const MobileSideNavContent = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding-left: 0px;
+  align-items: flex-start;
+`
+
+export const MobileSideNavItem = styled.li`
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`
+
+export const MobileSidebarButtons = styled.button`
+  border: none;
+  background-color: transparent;
+  color: ${props => (props.isDarkTheme ? '#ebebeb' : '#231f20')};
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Roboto';
   cursor: pointer;
   outline: none;
 `

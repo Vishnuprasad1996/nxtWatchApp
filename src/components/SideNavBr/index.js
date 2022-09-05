@@ -3,6 +3,8 @@ import {SiYoutubegaming} from 'react-icons/si'
 import {MdPlaylistAdd} from 'react-icons/md'
 import {AiFillHome, AiFillFire} from 'react-icons/ai'
 
+import './index.css'
+
 import ThemeContext from '../../context/ThemeContext'
 
 import {
@@ -20,39 +22,87 @@ import {
 const SideNavBr = () => (
   <ThemeContext.Consumer>
     {value => {
-      const {isDarkTheme} = value
+      const {isDarkTheme, activeTabId, changeTabId} = value
+
+      const onClickHomeButton = () => {
+        changeTabId('HOME')
+      }
+
+      const onClickGamingButton = () => {
+        changeTabId('GAME')
+      }
+
+      const onClickSavedButton = () => {
+        changeTabId('SAVED')
+      }
+
+      const onClickTrendingButton = () => {
+        changeTabId('TRENDING')
+      }
+
+      console.log(activeTabId)
+
+      const homeActiveIconColor = activeTabId === 'HOME' ? 'active-red' : ''
+      const trendingActiveIconColor =
+        activeTabId === 'TRENDING' ? 'active-red' : ''
+      const savedActiveIconColor = activeTabId === 'SAVED' ? 'active-red' : ''
+      const gameActiveIconColor = activeTabId === 'GAME' ? 'active-red' : ''
 
       return (
         <SideNavBarbg isDarkTheme={isDarkTheme}>
           <SideBarIconsCont>
             <SideBarIconCont>
               <Link className="nav-link" to="/">
-                <AiFillHome className="side-nav-icons" />
-                <SidebarButtons type="button" isDarkTheme={isDarkTheme}>
+                <AiFillHome
+                  className={`side-nav-icons ${homeActiveIconColor}`}
+                />
+                <SidebarButtons
+                  onClick={onClickHomeButton}
+                  type="button"
+                  isDarkTheme={isDarkTheme}
+                >
                   Home
                 </SidebarButtons>
               </Link>
             </SideBarIconCont>
             <SideBarIconCont>
               <Link className="nav-link" to="/trending">
-                <AiFillFire className="side-nav-icons" />
-                <SidebarButtons type="button" isDarkTheme={isDarkTheme}>
+                <AiFillFire
+                  className={`side-nav-icons ${trendingActiveIconColor}`}
+                />
+                <SidebarButtons
+                  onClick={onClickTrendingButton}
+                  type="button"
+                  isDarkTheme={isDarkTheme}
+                >
                   Trending
                 </SidebarButtons>
               </Link>
             </SideBarIconCont>
             <SideBarIconCont>
               <Link className="nav-link" to="/gaming">
-                <SiYoutubegaming className="side-nav-icons" />
-                <SidebarButtons type="button" isDarkTheme={isDarkTheme}>
+                <SiYoutubegaming
+                  className={`side-nav-icons ${gameActiveIconColor}`}
+                />
+                <SidebarButtons
+                  onClick={onClickGamingButton}
+                  type="button"
+                  isDarkTheme={isDarkTheme}
+                >
                   Gaming
                 </SidebarButtons>
               </Link>
             </SideBarIconCont>
             <SideBarIconCont>
               <Link className="nav-link" to="/saved-videos">
-                <MdPlaylistAdd className="side-nav-icons" />
-                <SidebarButtons type="button" isDarkTheme={isDarkTheme}>
+                <MdPlaylistAdd
+                  className={`side-nav-icons ${savedActiveIconColor}`}
+                />
+                <SidebarButtons
+                  onClick={onClickSavedButton}
+                  type="button"
+                  isDarkTheme={isDarkTheme}
+                >
                   Saved videos
                 </SidebarButtons>
               </Link>

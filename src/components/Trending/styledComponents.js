@@ -4,7 +4,7 @@ export const TrendingBg = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
 `
 
@@ -14,6 +14,8 @@ export const TrendingContent = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
+  overflow-y: auto;
+  height: 100vh;
 `
 
 export const TrendingHeader = styled.div`
@@ -23,6 +25,7 @@ export const TrendingHeader = styled.div`
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
   justify-content: flex-start;
   width: 100%;
+  align-self: flex-start;
 `
 
 export const TrendingIconCont = styled.div`

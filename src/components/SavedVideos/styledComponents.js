@@ -4,7 +4,7 @@ export const SavedBg = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  height: 90vh;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
 `
 
@@ -13,6 +13,7 @@ export const SavedContent = styled.div`
   flex-direction: column;
   width: 100%;
   align-items: center;
+  overflow-y: auto;
 `
 
 export const SavedHeader = styled.div`
