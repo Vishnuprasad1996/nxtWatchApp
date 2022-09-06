@@ -89,7 +89,7 @@ export const TitleDesk = styled.p`
   }
 `
 
-export const ViewAndTimeCont = styled.p`
+export const ViewAndTimeCont = styled.div`
   list-style-type: none;
   display: flex;
   align-items: center;

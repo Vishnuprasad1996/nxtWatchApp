@@ -14,7 +14,7 @@ import SavedVideos from './components/SavedVideos'
 import './App.css'
 
 class App extends Component {
-  state = {isDarkTheme: false, savedVideoList: []}
+  state = {isDarkTheme: false, savedVideoList: [], activeTabId: 'HOME'}
 
   onClickThemeButton = () => {
     this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
@@ -39,8 +39,12 @@ class App extends Component {
     }
   }
 
+  changeTabId = value => {
+    this.setState({activeTabId: value})
+  }
+
   render() {
-    const {isDarkTheme, savedVideoList} = this.state
+    const {isDarkTheme, savedVideoList, activeTabId} = this.state
     console.log(savedVideoList)
 
     return (
@@ -48,8 +52,10 @@ class App extends Component {
         value={{
           isDarkTheme,
           savedVideoList,
+          activeTabId,
           onClickThemeButton: this.onClickThemeButton,
           onClickSaveButton: this.onClickSaveButton,
+          changeTabId: this.changeTabId,
         }}
       >
         <Switch>

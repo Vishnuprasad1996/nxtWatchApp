@@ -4,7 +4,7 @@ export const GamingBg = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9 ')};
 `
 
@@ -12,11 +12,16 @@ export const GamingContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
 `
 export const GamingHeader = styled.div`
   display: flex;
   padding: 15px;
   align-items: center;
+  align-self: center;
+  width: 100%;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
 `
 

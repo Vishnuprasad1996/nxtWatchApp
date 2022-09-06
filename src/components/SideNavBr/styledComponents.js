@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const SideNavBarbg = styled.div`
   display: none;
+  height: 90vh;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;

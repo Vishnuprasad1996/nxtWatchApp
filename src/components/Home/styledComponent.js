@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const HomeBg = styled.div`
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  height: 90vh;
   width: 100%;
   background-color: ${props => (props.isDarkTheme ? '#181818' : '#f9f9f9')};
   padding-bottom: 25px;
@@ -13,6 +13,7 @@ export const HomeContentBg = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow-y: auto;
 `
 
 export const PremiumBanner = styled.div`
@@ -137,8 +138,6 @@ export const VideoListItemCont = styled.ul`
   width: 100%;
   padding-left: 0px;
   list-style-type: none;
-  flex-grow: 1;
-  overflow-y: auto;
   @media screen and (min-width: 576px) {
     flex-direction: row;
     flex-wrap: wrap;
