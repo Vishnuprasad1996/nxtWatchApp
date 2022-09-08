@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const TrendingBg = styled.div`
   display: flex;
-  justify-content: center;
   width: 100%;
   min-height: 90vh;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9')};
@@ -13,7 +12,6 @@ export const TrendingContent = styled.div`
   flex-direction: column;
   width: 100%;
   align-items: center;
-  justify-content: center;
   overflow-y: auto;
   height: 100vh;
 `

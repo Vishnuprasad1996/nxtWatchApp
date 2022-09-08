@@ -7,6 +7,12 @@ const ThemeContext = React.createContext({
   onClickSaveButton: () => {},
   changeTabId: () => {},
   activeTabId: 'HOME',
+  like: false,
+  dislike: false,
+  isSavedButtonClicked: false,
+  onChangeLikeButtonTheme: () => {},
+  onChangeDislikeButton: () => {},
+  onChangeSavedButton: () => {},
 })
 
 export default ThemeContext

@@ -48,9 +48,6 @@ class VideoItemDetails extends Component {
   state = {
     videoItemDetailList: [],
     apiStatus: apiStatusConstants.initial,
-    like: false,
-    dislike: false,
-    isSavedButtonClicked: false,
   }
 
   componentDidMount() {
@@ -96,41 +93,35 @@ class VideoItemDetails extends Component {
     }
   }
 
-  onClickLikeButton = () => {
-    const {dislike} = this.state
-    this.setState(prevState => ({like: !prevState.like}))
-    if (dislike === true) {
-      this.setState({dislike: false})
-    }
-  }
-
-  onClickDislikeButton = () => {
-    const {like} = this.state
-    this.setState(prevState => ({dislike: !prevState.dislike}))
-    if (like === true) {
-      this.setState({like: false})
-    }
-  }
-
-  onChangeToSavetoSaved = () => {
-    this.setState(prevState => ({
-      isSavedButtonClicked: !prevState.isSavedButtonClicked,
-    }))
-  }
-
   renderSuccessView = () => (
     <ThemeContext.Consumer>
       {value => {
-        const {isDarkTheme, onClickSaveButton} = value
         const {
-          videoItemDetailList,
+          isDarkTheme,
+          onClickSaveButton,
           like,
           dislike,
           isSavedButtonClicked,
-        } = this.state
+          onChangeDislikeButton,
+          onChangeLikeButtonTheme,
+          onChangeSavedButton,
+        } = value
+        const {videoItemDetailList} = this.state
 
         const date = new Date(videoItemDetailList.publishedAt)
         const formattedDate = formatDistanceToNow(date)
+
+        const onClickLikeButton = () => {
+          onChangeLikeButtonTheme()
+        }
+
+        const onClickDislikeButton = () => {
+          onChangeDislikeButton()
+        }
+
+        const onChangeToSavetoSaved = () => {
+          onChangeSavedButton()
+        }
 
         const colorIcon = {
           color: isDarkTheme ? '#475569' : '#231f20',
@@ -141,18 +132,23 @@ class VideoItemDetails extends Component {
         }
 
         const onAddToSaved = () => {
-          onClickSaveButton(videoItemDetailList)
-          this.onChangeToSavetoSaved()
+          onClickSaveButton({
+            ...videoItemDetailList,
+            like,
+            dislike,
+            isSavedButtonClicked,
+          })
+          onChangeToSavetoSaved()
         }
 
         const likeButtonColor = {
-          color: like ? '#2563eb' : '#64748b',
+          color: videoItemDetailList.like ? '#2563eb' : '#64748b',
           height: '25px',
           width: '25px',
         }
 
         const dislikeButtonColor = {
-          color: dislike ? '#2563eb' : '#64748b',
+          color: videoItemDetailList.dislike ? '#2563eb' : '#64748b',
           height: '25px',
           width: '25px',
         }
@@ -187,14 +183,11 @@ class VideoItemDetails extends Component {
                   <Years isDarkTheme={isDarkTheme}>{formattedDate}</Years>
                 </ViewAndTimeCont>
                 <LikeDislikeSaveCont>
-                  <ButtonsCont onClick={this.onClickLikeButton} type="button">
+                  <ButtonsCont onClick={onClickLikeButton} type="button">
                     <AiOutlineLike style={likeButtonColor} />
                     <Like like={like}>Like</Like>
                   </ButtonsCont>
-                  <ButtonsCont
-                    onClick={this.onClickDislikeButton}
-                    type="button"
-                  >
+                  <ButtonsCont onClick={onClickDislikeButton} type="button">
                     <AiOutlineDislike style={dislikeButtonColor} />
                     <Dislike dislike={dislike}>Dislike</Dislike>
                   </ButtonsCont>

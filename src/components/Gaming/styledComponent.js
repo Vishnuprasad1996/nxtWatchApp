@@ -2,9 +2,8 @@ import styled from 'styled-components'
 
 export const GamingBg = styled.div`
   display: flex;
-  justify-content: center;
   width: 100%;
-  min-height: 90vh;
+  height: 90vh;
   background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#f9f9f9 ')};
 `
 
@@ -14,7 +13,6 @@ export const GamingContent = styled.div`
   width: 100%;
   overflow-y: auto;
   align-items: center;
-  justify-content: center;
 `
 export const GamingHeader = styled.div`
   display: flex;
