@@ -48,6 +48,9 @@ class VideoItemDetails extends Component {
   state = {
     videoItemDetailList: [],
     apiStatus: apiStatusConstants.initial,
+    like: false,
+    dislike: false,
+    isSavedButtonClicked: false,
   }
 
   componentDidMount() {
@@ -58,6 +61,8 @@ class VideoItemDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
+
+    const {like, dislike, isSavedButtonClicked} = this.state
 
     this.setState({apiStatus: apiStatusConstants.inProgress})
 
@@ -83,6 +88,9 @@ class VideoItemDetails extends Component {
         viewCount: data.video_details.view_count,
         publishedAt: data.video_details.published_at,
         description: data.video_details.description,
+        likeButtonStatus: like,
+        dislikeButtonStatus: dislike,
+        savedButtonStatus: isSavedButtonClicked,
       }
       this.setState({
         videoItemDetailList: formattedData,
@@ -93,35 +101,41 @@ class VideoItemDetails extends Component {
     }
   }
 
+  onClickLikeButton = () => {
+    const {dislike} = this.state
+    this.setState(prevState => ({like: !prevState.like}))
+    if (dislike === true) {
+      this.setState({dislike: false}, this.getVideoItemDetails)
+    }
+  }
+
+  onClickDislikeButton = () => {
+    const {like} = this.state
+    this.setState(prevState => ({dislike: !prevState.dislike}))
+    if (like === true) {
+      this.setState({like: false})
+    }
+  }
+
+  onChangeToSavetoSaved = () => {
+    this.setState(prevState => ({
+      isSavedButtonClicked: !prevState.isSavedButtonClicked,
+    }))
+  }
+
   renderSuccessView = () => (
     <ThemeContext.Consumer>
       {value => {
+        const {isDarkTheme, onClickSaveButton} = value
         const {
-          isDarkTheme,
-          onClickSaveButton,
+          videoItemDetailList,
           like,
           dislike,
           isSavedButtonClicked,
-          onChangeDislikeButton,
-          onChangeLikeButtonTheme,
-          onChangeSavedButton,
-        } = value
-        const {videoItemDetailList} = this.state
+        } = this.state
 
         const date = new Date(videoItemDetailList.publishedAt)
         const formattedDate = formatDistanceToNow(date)
-
-        const onClickLikeButton = () => {
-          onChangeLikeButtonTheme()
-        }
-
-        const onClickDislikeButton = () => {
-          onChangeDislikeButton()
-        }
-
-        const onChangeToSavetoSaved = () => {
-          onChangeSavedButton()
-        }
 
         const colorIcon = {
           color: isDarkTheme ? '#475569' : '#231f20',
@@ -134,21 +148,21 @@ class VideoItemDetails extends Component {
         const onAddToSaved = () => {
           onClickSaveButton({
             ...videoItemDetailList,
-            like,
-            dislike,
-            isSavedButtonClicked,
+            likeButtonStatus: like,
+            dislikeButtonStatus: dislike,
+            savedButtonStatus: isSavedButtonClicked,
           })
-          onChangeToSavetoSaved()
+          this.onChangeToSavetoSaved()
         }
 
         const likeButtonColor = {
-          color: videoItemDetailList.like ? '#2563eb' : '#64748b',
+          color: like ? '#2563eb' : '#64748b',
           height: '25px',
           width: '25px',
         }
 
         const dislikeButtonColor = {
-          color: videoItemDetailList.dislike ? '#2563eb' : '#64748b',
+          color: dislike ? '#2563eb' : '#64748b',
           height: '25px',
           width: '25px',
         }
@@ -183,11 +197,14 @@ class VideoItemDetails extends Component {
                   <Years isDarkTheme={isDarkTheme}>{formattedDate}</Years>
                 </ViewAndTimeCont>
                 <LikeDislikeSaveCont>
-                  <ButtonsCont onClick={onClickLikeButton} type="button">
+                  <ButtonsCont onClick={this.onClickLikeButton} type="button">
                     <AiOutlineLike style={likeButtonColor} />
                     <Like like={like}>Like</Like>
                   </ButtonsCont>
-                  <ButtonsCont onClick={onClickDislikeButton} type="button">
+                  <ButtonsCont
+                    onClick={this.onClickDislikeButton}
+                    type="button"
+                  >
                     <AiOutlineDislike style={dislikeButtonColor} />
                     <Dislike dislike={dislike}>Dislike</Dislike>
                   </ButtonsCont>

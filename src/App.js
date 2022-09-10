@@ -18,35 +18,10 @@ class App extends Component {
     isDarkTheme: false,
     savedVideoList: [],
     activeTabId: 'HOME',
-    like: false,
-    dislike: false,
-    isSavedButtonClicked: false,
   }
 
   onClickThemeButton = () => {
     this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
-  }
-
-  onChangeDislikeButton = () => {
-    const {like} = this.state
-    this.setState(prevState => ({dislike: !prevState.dislike}))
-    if (like === true) {
-      this.setState({like: false})
-    }
-  }
-
-  onChangeLikeButtonTheme = () => {
-    const {dislike} = this.state
-    this.setState(prevState => ({like: !prevState.like}))
-    if (dislike === true) {
-      this.setState({dislike: false})
-    }
-  }
-
-  onChangeSavedButton = () => {
-    this.setState(prevState => ({
-      isSavedButtonClicked: !prevState.isSavedButtonClicked,
-    }))
   }
 
   onClickSaveButton = VideoList => {
@@ -73,14 +48,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      isDarkTheme,
-      savedVideoList,
-      activeTabId,
-      like,
-      dislike,
-      isSavedButtonClicked,
-    } = this.state
+    const {isDarkTheme, savedVideoList, activeTabId} = this.state
     console.log(savedVideoList)
 
     return (
@@ -92,12 +60,6 @@ class App extends Component {
           onClickThemeButton: this.onClickThemeButton,
           onClickSaveButton: this.onClickSaveButton,
           changeTabId: this.changeTabId,
-          like,
-          dislike,
-          isSavedButtonClicked,
-          onChangeLikeButtonTheme: this.onChangeLikeButtonTheme,
-          onChangeDislikeButton: this.onChangeDislikeButton,
-          onChangeSavedButton: this.onChangeSavedButton,
         }}
       >
         <Switch>
